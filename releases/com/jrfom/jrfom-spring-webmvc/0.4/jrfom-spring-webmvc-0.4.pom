@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.jrfom</groupId>
+  <artifactId>jrfom-spring-webmvc</artifactId>
+  <version>0.4</version>
+  <packaging>maven-archetype</packaging>
+
+  <name>jrfom-spring-webmvc</name>
+  <description>
+    This archetype generates a skeleton Spring WebMVC 4.0 project that uses
+    Java configuration instead of XML configuration.
+  </description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>2.2</version>
+      </extension>
+    </extensions>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-archetype-plugin</artifactId>
+        <version>2.2</version>
+      </plugin>
+
+      <plugin>
+        <!--
+        Seriously Maven? We can't do this by default?
+        -->
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>properties-maven-plugin</artifactId>
+        <version>1.0-alpha-2</version>
+        <executions>
+          <execution>
+            <phase>initialize</phase>
+            <goals>
+              <goal>read-project-properties</goal>
+            </goals>
+            <configuration>
+              <files>
+                <file>distribution.properties</file>
+              </files>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.8.1</version>
+        <configuration>
+          <altReleaseDeploymentRepository>
+            ${release.repo.id}::default::${release.repo.url}
+          </altReleaseDeploymentRepository>
+          <altSnapshotDeploymentRepository>
+            ${snapshot.repo.id}::default::${snapshot.repo.url}
+          </altSnapshotDeploymentRepository>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>jsumners-github-snapshots</id>
+      <url>https://github.com/jsumners/mvn-repo/raw/master/releases/</url>
+    </snapshotRepository>
+    <repository>
+      <id>jsumners-github-releases</id>
+      <url>https://github.com/jsumners/mvn-repo/raw/master/snapshots/</url>
+    </repository>
+  </distributionManagement>
+</project>
