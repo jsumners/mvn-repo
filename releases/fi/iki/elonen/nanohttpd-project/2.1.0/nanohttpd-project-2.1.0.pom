@@ -3,7 +3,7 @@
 
     <groupId>fi.iki.elonen</groupId>
     <artifactId>nanohttpd-project</artifactId>
-    <version>${current.version}</version>
+    <version>2.1.0</version>
     <packaging>pom</packaging>
 
     <name>NanoHttpd-Project</name>
@@ -16,10 +16,6 @@
         <module>webserver/markdown-plugin</module>
         <module>websocket</module>
     </modules>
-
-    <properties>
-        <current.version>2.1.0</current.version>
-    </properties>
 
     <build>
         <extensions>
